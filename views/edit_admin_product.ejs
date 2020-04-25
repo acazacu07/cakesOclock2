@@ -1,24 +1,24 @@
 <%- include layouts/header.ejs %>
 <!-- main content -->
 <main class="content-user">
-    <h1 class="bottom-dotted text-center pt-1 mb-1">User Edit</h1>
+    <h1 class="bottom-dotted text-center pt-1 mb-1">Edit Product</h1>
     <section class="form-card">
         <form method="post" action='/users/edit/<%=data[0].id%>'>
             <div class="padding-1">
-                <label>Username</label>
-                <input type= "text" name ="username" placeholder="username" class ="form-inputs" value="<%=data[0].username%>" />
+                <label>Name</label>
+                <input type= "text" name ="username" placeholder="name" class ="form-inputs" value="<%=data[0].name%>" />
             </div>
             <div class="padding-1">
-                <label>Full Name</label>
-                <input type= "text" name ="fullname" placeholder="Full Name" class ="form-inputs" value="<%=data[0].fullname%>" />
+                <label>Description</label>
+                <input type= "text" name ="fullname" placeholder="description" class ="form-inputs" value="<%=data[0].description%>" />
             </div>
             <div class="padding-1">
-                <label>Email</label>
-                <input type= "email" name ="email" placeholder="Email" class ="form-inputs" value="<%=data[0].email%>" autocomplete required/>
+                <label>Allergen Info</label>
+                <input type= "text" name ="allergen_info" placeholder="allergen" class ="form-inputs" value="<%=data[0].allergen_info%>" autocomplete required/>
             </div>
             <div class="padding-1">
-                <label>Phone</label>
-                <input type= "text" name ="phone" placeholder="Phone" class ="form-inputs" value="<%=data[0].phone%>" autocomplete required/>
+                <label>Category</label>
+                <input type= "number" name ="phone" placeholder="Category" class ="form-inputs" value="<%=data[0].cat_id%>" autocomplete required/>
             </div>
             <div class="padding-1 container">
                 <input type="submit" name="submit" value="Save" class="form-btn" >

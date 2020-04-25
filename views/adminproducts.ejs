@@ -14,7 +14,7 @@
                 <th>Allergen</th>
                 <th>Category ID</th>
                 <th>Image</th>
-                <th>Stock</th>
+                <th></th>
             </tr>                   
             <% if(data.length){             
                 for(var i = 0;i < data.length;i++) { %>
@@ -26,7 +26,7 @@
                     <td><%=data[i].cat_id%></td>
                     <td><%=data[i].prd_img%></td>
                     <td>
-                       <a class="btn-secondary" href="../productsadmin/edit/<%=data[i].id%>">Edit</a>
+                       <a class="btn-secondary" href="../adminproducts/edit/<%=data[i].id%>">Edit</a>
                        <a class="btn-secondary" href="../users/delete/<%=data[i].id%>">Delete</a>
                       
                     </td>

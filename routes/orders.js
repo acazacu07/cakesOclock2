@@ -1,4 +1,4 @@
-/*exports.orders = function(req, res){
+exports.orders = function(req, res){
     req.getConnection(function(err,connection){
          
           var queryString = 'SELECT ord_id created_at status customer_id FROM orders WHERE customer_id=[?]';
@@ -14,7 +14,7 @@
           });
            //console.log(query.sql);
       });
-  };*/
+  };
 
   exports.orders = function(req, res){
     res.render('orders', { title: 'Cakes OClock' });
