@@ -37,10 +37,25 @@
 	        </div>
 	        <!-- register, login and cart  -->
 	        <div class="col-4 right mt-1">
-	        	<!-- logout btn -->
+	        	<% if(isAuthenticated) { %>
+                <!-- register btn -->
+                <button class="headbutton1 mr-1" type="button" onclick="location.href='/register'">
+                    REGISTER
+                </button>
+                <!-- Login btn -->
+                <button id="loginbtn" class="headbutton2 mr-1" type="button" onclick ="location.href='/login'"> 
+                    LOGIN
+                </button>
+                    <% } else{ %>  
+                <!-- register btn -->
+                <button class="headbutton2 mr-1" type="button" onclick="location.href='/profile'">
+                    PROFILE
+                </button>
+                <!-- Logout btn -->
                 <button id="logoutbtn" class="headbutton1 mr-1" type="button" onclick="location.href='/logout'">
-	        		LOGOUT
-	        	</button>
+                    LOGOUT
+                </button> 
+                <% } %>
 	        	<!-- cart btn -->
 	        	<button class="btn-cart" type = "button" onclick ="location.href='/cart'">
 	        		<i class="fa fa-shopping-cart"></i>

@@ -1,6 +1,11 @@
 //Get about us page
 exports.about = function(req, res){
-	res.render('about_us', {title: "About Us" });
+	let user = req.session.user;
+    if(user) {
+        res.render('about_us', {opp:req.session.opp, name:user.fullname, data:user.id});
+        return;
+	}
+	res.render('/', {title: "About Us" });
 };
 
 //Get contact us page

@@ -29,14 +29,14 @@ exports.list = function(req, res){
             }
             categories[categoryId].products.push(rows[i]);
         }
-            res.render('products',{page_title:"Customers - Node.js", data: [], categories: categoriesWithProducts });
+            res.render('products',{page_title:"Customers - Node.js", data: [], categories: categoriesWithProducts,});
         });
          //console.log(query.sql);
     });
 };
 //page not added yet
 exports.add = function(req, res){
-  res.render('add_products',{page_title:"Add Product Item - Node.js"});
+  res.render('add_admin_products',{page_title:"Add Product Item - Node.js"});
 };
 //page not added yet
 exports.edit = function(req, res){

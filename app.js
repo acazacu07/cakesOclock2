@@ -3,17 +3,19 @@
  */
 
 var express = require('express');// Express to run server and routes
-var session = require('express-session');
-var passport = require('passport');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-
-var mysql = require('mysql')
-
+var mysql = require('mysql');
 
 var methodOverride = require('method-override')
+
+// Authentication Packages
+var session = require('express-session');
+var passport = require('passport');
+
+
 //load customers route
 var customers = require('./routes/customers');
 //load products route
@@ -36,8 +38,9 @@ var users = require('./routes/users');
 
 //load item route
 var itemjsfile = require('./routes/items');
-//load orders route
-var ordersjsfile = require('./routes/orders');
+
+//load adminorders route
+var adminorders = require('./routes/adminorders');
 
 //load checkout route 
 var checkoutjsfile  = require('./routes/checkout');
@@ -85,7 +88,6 @@ if ('development' == app.get('env')) {
 -------------------------------------------*/
 
 app.use(
-
     connection(mysql,{
 
         host:"cakesdb1.cvnkqaqbljxc.us-east-1.rds.amazonaws.com",
@@ -95,18 +97,18 @@ app.use(
         database : "cakesOclockSch", //schemaName
 
     },'pool')
-
 );
 
 //session
 app.use(session({
-  secret:'Cakes Oclock',
+  secret:'C4k3s0cl0ck',
   resave: false,
   saveUninitialized: false,
   cookie: {
       maxAge: 60 * 1000 * 30
   }
 }));
+
 
 //passport - Authentication
 app.use(passport.initialize());
@@ -129,13 +131,14 @@ app.post('/login_data',registerjsfile.login_data);
 //get logout url
 app.get('/logout', registerjsfile.loggout);
 
-//get user url
+//get profile url
 app.get('/profile', profilejsfile.profile);
-//app.get('/profile/:id', profilejsfile.profile_edit);
-//app.post('/profile/edit/:id',users.save_edit);
+app.get('/users/edit/:id',profilejsfile.edit);
 
 //get users url
 app.get('/users', users.list);
+//app.get('/users/add', users.add);
+//app.post('/users/add', users.save);
 app.get('/users/edit/:id', users.edit);
 app.post('/users/edit/:id',users.save_edit);
 app.get('/users/delete/:id', users.delete_user);
@@ -165,15 +168,18 @@ app.get('/cart', cartjsfile.cart);
 app.post('/cart', cartjsfile.cart_items);
 app.get('/location', locationjsfile.location);
 app.get ('/checkout', checkoutjsfile.checkout);
-app.get('/orders', ordersjsfile.orders);
 
 //get adminproducts url
 app.get('/adminproducts', adminproducts.list);
 app.get('/adminproducts/add', adminproducts.add);
-//app.post('/adminproducts/add', adminproducts.save);
+app.post('/adminproducts/add', adminproducts.save);
 app.get('/adminproducts/edit/:id', adminproducts.edit);
 app.post('/adminproducts/edit/:id',adminproducts.save_edit);
-//app.get('/adminproducts/delete/:id', adminproducts.delete_user);
+app.get('/adminproducts/delete/:id', adminproducts.delete_product);
+
+//get adminorders url
+app.get('/adminorders', adminorders.list);
+
 
 app.use(app.router);
 

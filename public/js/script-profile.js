@@ -17,11 +17,13 @@ for (i = 0; i < acc.length; i++) {
 }
 
 
-var user = {
-  data: {
-      id: null,
-      username: null,
-  },
-};
+function addUser(){
+            
+  window.location.href = '/users/add';
+}
+function cancelAdd(){
+  
+  window.location.href = '/users';
+}
 
 

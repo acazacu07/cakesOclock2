@@ -71,13 +71,4 @@ User.prototype = {
     }
 }
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-   
-passport.deserializeUser(function(id, done) {
-    done(err, user);
-});
-
-
 module.exports = User;

@@ -1,4 +1,4 @@
-<%- include layouts/header.ejs %>
+<%- include layouts/header2.ejs %>
 
 <h1>ADMIN PRODUCTS</h1>
 
@@ -27,7 +27,7 @@
                     <td><%=data[i].prd_img%></td>
                     <td>
                        <a class="btn-secondary" href="../adminproducts/edit/<%=data[i].id%>">Edit</a>
-                       <a class="btn-secondary" href="../users/delete/<%=data[i].id%>">Delete</a>
+                       <a class="btn-secondary" href="../adminproducts/delete/<%=data[i].id%>">Delete</a>
                       
                     </td>
                 </tr>

@@ -37,8 +37,7 @@
 	        </div>
 	        <!-- register, login and cart  -->
 	        <div class="col-4 right mt-1">
-                
-                {{#if user}}
+                <% if(typeof isAuthenticated === 'true') { %>
                 <!-- register btn -->
 	        	<button class="headbutton2 mr-1" type="button" onclick="location.href='/profile'">
 	        		PROFILE
@@ -47,8 +46,8 @@
                 <button id="logoutbtn" class="headbutton1 mr-1" type="button" onclick="location.href='/logout'">
 	        		LOGOUT
                 </button> 
-                {{else}}
-                	        	<!-- register btn -->
+                  <% } else{ %>  
+                <!-- register btn -->
 	        	<button class="headbutton1 mr-1" type="button" onclick="location.href='/register'">
 	        		REGISTER
 	        	</button>
@@ -56,17 +55,12 @@
 	        	<button id="loginbtn" class="headbutton2 mr-1" type="button" onclick ="location.href='/login'"> 
 	        		LOGIN
                 </button>
-                {{/if}}
+                <% } %>
                 
 	        	<!-- cart btn -->
 	        	<button class="btn-cart" type = "button" onclick ="location.href='/cart'">
 	        		<i class="fa fa-shopping-cart"></i>
                 </button>
-                
-                <% if(isAuthenticated) { %>
-                    <p> Yay it's true! </p>
-                <% } %>
-                
 	        </div>
             <!-- navigation links -->
             <nav class="menu-large mt-1">

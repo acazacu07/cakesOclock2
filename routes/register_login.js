@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../user_dbq/userdb');
+const passport = require('passport');
 const router = express.Router();
 
 // create an object from the class User in the file core/user.js
@@ -7,8 +8,6 @@ const user = new User();
 
 // Get register page.
 exports.register = function(req, res){
-    console.log(req.user);
-    console.log(req.isAuthenticated());
     let user = req.session.user;
     //if there is a session named user that means the use is logged in. so we redirect him to home page by using /home route below
     if(user) {
@@ -21,8 +20,6 @@ exports.register = function(req, res){
 
 //  Get login page 
 exports.login = function(req, res){
-    console.log(req.user);
-    console.log(req.isAuthenticated());
     let user = req.session.user;
     //if there is a session named user that means the use is logged in. so we redirect him to home page by using /home route below
     if(user) {
@@ -33,27 +30,10 @@ exports.login = function(req, res){
 	res.render('login', {title: "Log in" });
 };
 
-
-
-// Post login data 
-exports.login_data = function(req, res, next){
-    user.login(req.body.username, req.body.password, function(result) {
-        if(result) {
-            //Store the user data in a session.
-            req.session.user = result;
-            req.session.opp = 1;
-            // redirect the user to the home page.
-            res.redirect('/profile');
-            //res.send('Logged in as :' + result.username);
-        }else {
-            // if the login function returns null send this error message back to the user.
-            res.send('Username/Password incorrect!');
-        }
-    })
-};
-
 //  post register data 
 exports.register_data = function(req, res, next){
+    /*console.log(req.user);
+    console.log(req.isAuthenticated());*/
     // prepare an object containing all user inputs.
     let userInput = {
         username: req.body.username,
@@ -78,6 +58,26 @@ exports.register_data = function(req, res, next){
     });
 };
 
+
+// Post login data 
+exports.login_data = function(req, res, next){
+    //console.log(req.user);
+    //console.log(req.isAuthenticated());
+    user.login(req.body.username, req.body.password, function(result) {
+        if(result) {
+            //Store the user data in a session.
+            req.session.user = result;
+            req.session.opp = 1;
+            // redirect the user to the home page.
+            res.redirect('/profile');
+            //res.send('Logged in as :' + result.username);
+        }else {
+            // if the login function returns null send this error message back to the user.
+            res.send('Username/Password incorrect!');
+        }
+    })
+};
+
 //Get logout page
 exports.loggout = function(req, res, next){
     // Check if the session is exist
@@ -89,4 +89,20 @@ exports.loggout = function(req, res, next){
     }
 };
 
+/*passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+   
+passport.deserializeUser(function(id, done) {
+    done(err, user);
+});
 
+function authenticationMiddleware() {  
+	return (req, res, next) => {
+		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+	    if (req.isAuthenticated()) return next();
+	    res.redirect('/login')
+	}
+}
+*/

@@ -3,14 +3,14 @@
 <main class="content-user">
     <h1 class="bottom-dotted text-center pt-1 mb-1">Edit Product</h1>
     <section class="form-card">
-        <form method="post" action='/users/edit/<%=data[0].id%>'>
+        <form method="post" action='/adminproducts/edit/<%=data[0].id%>'>
             <div class="padding-1">
                 <label>Name</label>
-                <input type= "text" name ="username" placeholder="name" class ="form-inputs" value="<%=data[0].name%>" />
+                <input type= "text" name ="name" placeholder="name" class ="form-inputs" value="<%=data[0].name%>" />
             </div>
             <div class="padding-1">
                 <label>Description</label>
-                <input type= "text" name ="fullname" placeholder="description" class ="form-inputs" value="<%=data[0].description%>" />
+                <input type= "text" name ="description" placeholder="description" class ="form-inputs" value="<%=data[0].description%>" />
             </div>
             <div class="padding-1">
                 <label>Allergen Info</label>
@@ -18,7 +18,11 @@
             </div>
             <div class="padding-1">
                 <label>Category</label>
-                <input type= "number" name ="phone" placeholder="Category" class ="form-inputs" value="<%=data[0].cat_id%>" autocomplete required/>
+                <input type= "text" name ="cat_id" placeholder="Category" class ="form-inputs" value="<%=data[0].cat_id%>" autocomplete required/>
+            </div>
+            <div class="padding-1">
+                <label>Image</label>
+                <input type= "text" name ="image" placeholder="image" class ="form-inputs" value="<%=data[0].prd_img%>" autocomplete required/>
             </div>
             <div class="padding-1 container">
                 <input type="submit" name="submit" value="Save" class="form-btn" >

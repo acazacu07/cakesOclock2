@@ -17,9 +17,10 @@ exports.list = function(req, res){
     });
 };
   
+
 //Add new User
 exports.add = function(req, res){
-    res.render('/register',{page_title:"Add Users - Node.js"});
+    res.render('add_users',{page_title:"Add Users - Node.js"});
 };
 
 //Edit user data  
@@ -67,7 +68,6 @@ exports.save = function(req,res){
         fullname : input.fullname,
         email   : input.email,
         phone   : input.phone,
-        password   : input.password
     };
     var query = connection.query("INSERT INTO users set ? ",data, function(err, rows)
     {
