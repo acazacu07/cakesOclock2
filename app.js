@@ -122,7 +122,7 @@ app.use(function (req, res, next){
 app.get('/', routes.index);
 //get register url
 app.get('/register', registerjsfile.register);
-app.post('/register_data', registerjsfile.register_data);
+app.post('/register', registerjsfile.register_data);
 
 //get login url
 app.get('/login', registerjsfile.login);
